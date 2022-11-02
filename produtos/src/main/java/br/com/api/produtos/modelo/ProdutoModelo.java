@@ -5,21 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Table(name = "produtos")
-@Getter
-@Setter
+@Table(name = "pacotes")
+@Data
 
 public class ProdutoModelo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codigo;
-    private String nome;
-    private String marca;
-
+    private String partida;
+    private String destino;
+    private Integer preco;
+    private Integer data;
 }

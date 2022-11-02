@@ -26,11 +26,17 @@ public class ProdutoServico {
     // Método para cadastrar ou alterar produtos
     public ResponseEntity<?> cadastrarAlterar(ProdutoModelo pm, String acao) {
 
-        if (pm.getNome().equals("")) {
-            rm.setMensagem("O nome do produto e obrigatorio!");
+        if (pm.getPartida().equals("")) {
+            rm.setMensagem("O local de partida e obrigatorio!");
             return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
-        } else if (pm.getMarca().equals("")) {
-            rm.setMensagem("O nome da marca é obrigatorio");
+        } else if (pm.getDestino().equals("")) {
+            rm.setMensagem("O local de destino e obrigatorio!");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+        } else if (pm.getPreco().equals(0)) {
+            rm.setMensagem("O preco e obrigatorio!");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+        } else if (pm.getData().equals(0)) {
+            rm.setMensagem("A data e obrigatorio!");
             return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
         } else {
             if (acao.equals("cadastrar")) {
@@ -45,7 +51,7 @@ public class ProdutoServico {
     public ResponseEntity<RespostaModelo> remover(long codigo) {
 
         pr.deleteById(codigo);
-        rm.setMensagem("O produto foi removido com sucesso!");
+        rm.setMensagem("O pacote foi removido com sucesso!");
         return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
 
     }
